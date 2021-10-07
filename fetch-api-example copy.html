@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fetch API</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  
+</head>
+<body>
+  <div class="container">
+    <h1 class="display-4 mb-4 text-center">Fetch API</h1>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-success" id="getPosts">Get posts from external API</button>
+    </div>
+    <hr>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    document.getElementById('getPosts').addEventListener('click', getPosts);
+    function getPosts(){
+      fetch('https://api.getpostman.com/me', {
+        headers: {
+          'X-API-KEY': 'PMAK-611ad91167110e005157fc03-26d47912ad1eeb2605dfdc08d68085a0d5'
+        }
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        let output = '<h2 class="mb-4">Username</h2>';
+        output += `<p>${data.user.username}</p>`;
+        document.getElementById('output').innerHTML = output;
+      })
+    }
+  </script>
+</body>
+</html>
